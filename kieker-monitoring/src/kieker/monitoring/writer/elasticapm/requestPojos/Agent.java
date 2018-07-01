@@ -1,7 +1,11 @@
 package kieker.monitoring.writer.elasticapm.requestPojos;
 
-class Agent {
+import com.google.gson.annotations.Expose;
+
+public class Agent {
+	@Expose
 	String name;
+	@Expose
 	String version;
 
 	public String getName() {

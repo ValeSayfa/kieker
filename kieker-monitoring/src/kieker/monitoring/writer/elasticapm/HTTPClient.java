@@ -1,14 +1,16 @@
 package kieker.monitoring.writer.elasticapm;
 
+import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
  * Handles the HTTP connection to the APM server
- * 
+ *
  * @author Valentin Seifermann
  *
  */
@@ -30,6 +32,18 @@ public class HTTPClient {
 			wr.writeBytes(data);
 			wr.flush();
 			wr.close();
+			final BufferedReader in = new BufferedReader(
+					new InputStreamReader(con.getInputStream()));
+			String inputLine;
+			final StringBuffer response = new StringBuffer();
+
+			while ((inputLine = in.readLine()) != null) {
+				response.append(inputLine);
+			}
+			in.close();
+
+			// print result
+			System.out.println(response.toString());
 		} catch (final IOException exception) {
 			throw exception;
 		} finally {

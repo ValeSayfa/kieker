@@ -1,6 +1,9 @@
 package kieker.monitoring.writer.elasticapm.requestPojos;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.google.gson.annotations.Expose;
 
 /**
  * JSON Schema for Transaction POST request to the elastic APM server
@@ -9,11 +12,14 @@ import java.util.List;
  *
  */
 public class TransactionRequest {
+	@Expose
 	Service service;
+	@Expose
 	List<Transaction> transactions;
 
 	public TransactionRequest() {
 		this.service = new Service();
+		this.transactions = new ArrayList<>();
 	}
 
 	public Service getService() {
@@ -30,5 +36,9 @@ public class TransactionRequest {
 
 	public void setTransactions(final List<Transaction> transactions) {
 		this.transactions = transactions;
+	}
+
+	public void addTransactions(final Transaction trans) {
+		this.transactions.add(trans);
 	}
 }

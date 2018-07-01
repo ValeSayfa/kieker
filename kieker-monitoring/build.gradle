@@ -11,7 +11,7 @@ dependencies {
 	clover 'org.openclover:clover:4.2.0'
 
 	compile project(':kieker-common')
-	
+	compile 'com.google.code.gson:gson:2.8.4'
 	compile 'com.rabbitmq:amqp-client:4.2.1'
 	compile resolveLibrary('javax.jms-*.jar')
 	compile 'org.jctools:jctools-core:2.1.0'
